@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionDesRendezVousModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="Adminpassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CIN" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="nomCli" Type="nvarchar" MaxLength="255" />
+    <Property Name="prenom" Type="nvarchar" MaxLength="255" />
+    <Property Name="DateNaissance" Type="date" />
+    <Property Name="addressCli" Type="text" />
+    <Property Name="Tel" Type="int" />
+    <Property Name="sex" Type="nvarchar" MaxLength="11" />
+    <Property Name="Assurer" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="id_Doc" />
+    </Key>
+    <Property Name="id_Doc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDoc" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="PasswordDoc" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="DocumentsClient">
+    <Key>
+      <PropertyRef Name="idDocument" />
+    </Key>
+    <Property Name="idDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Maladie" Type="text" />
+    <Property Name="maladieChronique" Type="text" />
+    <Property Name="operation" Type="text" />
+    <Property Name="Poids" Type="float" />
+    <Property Name="Longueur" Type="float" />
+    <Property Name="id" Type="int" />
+    <Property Name="id_Doc" Type="int" />
+  </EntityType>
+  <EntityType Name="RendezVous">
+    <Key>
+      <PropertyRef Name="idRV" />
+    </Key>
+    <Property Name="idRV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RVdate" Type="date" />
+    <Property Name="RVTime" Type="time" Precision="7" />
+    <Property Name="id" Type="int" />
+    <Property Name="id_Doc" Type="int" />
+  </EntityType>
+  <Association Name="FK__Documents__id_Do__4222D4EF">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="DocumentsClient" Type="Self.DocumentsClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="id_Doc" />
+      </Principal>
+      <Dependent Role="DocumentsClient">
+        <PropertyRef Name="id_Doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DocumentsCli__id__412EB0B6">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="DocumentsClient" Type="Self.DocumentsClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DocumentsClient">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RendezVou__id_Do__3E52440B">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="id_Doc" />
+      </Principal>
+      <Dependent Role="RendezVous">
+        <PropertyRef Name="id_Doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RendezVous__id__3D5E1FD2">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RendezVous">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionDesRendezVousModelStoreContainer">
+    <EntitySet Name="Admine" EntityType="Self.Admine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentsClient" EntityType="Self.DocumentsClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Documents__id_Do__4222D4EF" Association="Self.FK__Documents__id_Do__4222D4EF">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="DocumentsClient" EntitySet="DocumentsClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DocumentsCli__id__412EB0B6" Association="Self.FK__DocumentsCli__id__412EB0B6">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="DocumentsClient" EntitySet="DocumentsClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RendezVou__id_Do__3E52440B" Association="Self.FK__RendezVou__id_Do__3E52440B">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="RendezVous" EntitySet="RendezVous" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RendezVous__id__3D5E1FD2" Association="Self.FK__RendezVous__id__3D5E1FD2">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="RendezVous" EntitySet="RendezVous" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

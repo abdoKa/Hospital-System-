@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionDesRendezVousModelStoreContainer" CdmEntityContainer="DbEntities">
+    <EntitySetMapping Name="Admines">
+      <EntityTypeMapping TypeName="GestionDesRendezVousModel.Admine">
+        <MappingFragment StoreEntitySet="Admine">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="Adminpassword" ColumnName="Adminpassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="GestionDesRendezVousModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="nomCli" ColumnName="nomCli" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="addressCli" ColumnName="addressCli" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="Assurer" ColumnName="Assurer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="GestionDesRendezVousModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="id_Doc" ColumnName="id_Doc" />
+          <ScalarProperty Name="idDoc" ColumnName="idDoc" />
+          <ScalarProperty Name="PasswordDoc" ColumnName="PasswordDoc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentsClients">
+      <EntityTypeMapping TypeName="GestionDesRendezVousModel.DocumentsClient">
+        <MappingFragment StoreEntitySet="DocumentsClient">
+          <ScalarProperty Name="idDocument" ColumnName="idDocument" />
+          <ScalarProperty Name="Maladie" ColumnName="Maladie" />
+          <ScalarProperty Name="maladieChronique" ColumnName="maladieChronique" />
+          <ScalarProperty Name="operation" ColumnName="operation" />
+          <ScalarProperty Name="Poids" ColumnName="Poids" />
+          <ScalarProperty Name="Longueur" ColumnName="Longueur" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_Doc" ColumnName="id_Doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RendezVous">
+      <EntityTypeMapping TypeName="GestionDesRendezVousModel.RendezVou">
+        <MappingFragment StoreEntitySet="RendezVous">
+          <ScalarProperty Name="idRV" ColumnName="idRV" />
+          <ScalarProperty Name="RVdate" ColumnName="RVdate" />
+          <ScalarProperty Name="RVTime" ColumnName="RVTime" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_Doc" ColumnName="id_Doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
